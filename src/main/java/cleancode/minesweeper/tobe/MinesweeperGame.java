@@ -15,9 +15,9 @@ public class MinesweeperGame {
         System.out.println("지뢰찾기 게임 시작!");
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 10; j++) {
-                board[i][j] = "□";
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 10; col++) {
+                board[row][col] = "□";
             }
         }
         for (int i = 0; i < 10; i++) {
@@ -25,46 +25,46 @@ public class MinesweeperGame {
             int row = new Random().nextInt(8);
             landMines[row][col] = true;
         }
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 10; col++) {
                 int count = 0;
-                if (!landMines[i][j]) {
-                    if (i - 1 >= 0 && j - 1 >= 0 && landMines[i - 1][j - 1]) {
+                if (!landMines[row][col]) {
+                    if (row - 1 >= 0 && col - 1 >= 0 && landMines[row - 1][col - 1]) {
                         count++;
                     }
-                    if (i - 1 >= 0 && landMines[i - 1][j]) {
+                    if (row - 1 >= 0 && landMines[row - 1][col]) {
                         count++;
                     }
-                    if (i - 1 >= 0 && j + 1 < 10 && landMines[i - 1][j + 1]) {
+                    if (row - 1 >= 0 && col + 1 < 10 && landMines[row - 1][col + 1]) {
                         count++;
                     }
-                    if (j - 1 >= 0 && landMines[i][j - 1]) {
+                    if (col - 1 >= 0 && landMines[row][col - 1]) {
                         count++;
                     }
-                    if (j + 1 < 10 && landMines[i][j + 1]) {
+                    if (col + 1 < 10 && landMines[row][col + 1]) {
                         count++;
                     }
-                    if (i + 1 < 8 && j - 1 >= 0 && landMines[i + 1][j - 1]) {
+                    if (row + 1 < 8 && col - 1 >= 0 && landMines[row + 1][col - 1]) {
                         count++;
                     }
-                    if (i + 1 < 8 && landMines[i + 1][j]) {
+                    if (row + 1 < 8 && landMines[row + 1][col]) {
                         count++;
                     }
-                    if (i + 1 < 8 && j + 1 < 10 && landMines[i + 1][j + 1]) {
+                    if (row + 1 < 8 && col + 1 < 10 && landMines[row + 1][col + 1]) {
                         count++;
                     }
-                    landMineCounts[i][j] = count;
+                    landMineCounts[row][col] = count;
                     continue;
                 }
-                landMineCounts[i][j] = 0;
+                landMineCounts[row][col] = 0;
             }
         }
         while (true) {
             System.out.println("   a b c d e f g h i j");
-            for (int i = 0; i < 8; i++) {
-                System.out.printf("%d  ", i + 1);
-                for (int j = 0; j < 10; j++) {
-                    System.out.print(board[i][j] + " ");
+            for (int row = 0; row < 8; row++) {
+                System.out.printf("%d  ", row + 1);
+                for (int col = 0; col < 10; col++) {
+                    System.out.print(board[row][col] + " ");
                 }
                 System.out.println();
             }
