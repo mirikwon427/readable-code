@@ -78,78 +78,78 @@ public class MinesweeperGame {
             }
             System.out.println();
             System.out.println("선택할 좌표를 입력하세요. (예: a1)");
-            String input = scanner.nextLine();
+            String cellInput = scanner.nextLine();
             System.out.println("선택한 셀에 대한 행위를 선택하세요. (1: 오픈, 2: 깃발 꽂기)");
-            String input2 = scanner.nextLine();
-            char c = input.charAt(0);
-            char r = input.charAt(1);
-            int col;
-            switch (c) {
+            String userActionInput = scanner.nextLine();
+            char cellInputCol = cellInput.charAt(0);
+            char CellInputRow = cellInput.charAt(1);
+            int selectedColumnIndex;
+            switch (cellInputCol) {
                 case 'a':
-                    col = 0;
+                    selectedColumnIndex = 0;
                     break;
                 case 'b':
-                    col = 1;
+                    selectedColumnIndex = 1;
                     break;
                 case 'c':
-                    col = 2;
+                    selectedColumnIndex = 2;
                     break;
                 case 'd':
-                    col = 3;
+                    selectedColumnIndex = 3;
                     break;
                 case 'e':
-                    col = 4;
+                    selectedColumnIndex = 4;
                     break;
                 case 'f':
-                    col = 5;
+                    selectedColumnIndex = 5;
                     break;
                 case 'g':
-                    col = 6;
+                    selectedColumnIndex = 6;
                     break;
                 case 'h':
-                    col = 7;
+                    selectedColumnIndex = 7;
                     break;
                 case 'i':
-                    col = 8;
+                    selectedColumnIndex = 8;
                     break;
                 case 'j':
-                    col = 9;
+                    selectedColumnIndex = 9;
                     break;
                 default:
-                    col = -1;
+                    selectedColumnIndex = -1;
                     break;
             }
-            int row = Character.getNumericValue(r) - 1;
-            if (input2.equals("2")) {
-                board[row][col] = "⚑";
-                boolean open = true;
-                for (int i = 0; i < 8; i++) {
-                    for (int j = 0; j < 10; j++) {
-                        if (board[i][j].equals("□")) {
-                            open = false;
+            int selectedRowIndex = Character.getNumericValue(CellInputRow) - 1;
+            if (userActionInput.equals("2")) {
+                board[selectedRowIndex][selectedColumnIndex] = "⚑";
+                boolean isAllOpened = true;
+                for (int row = 0; row < 8; row++) {
+                    for (int col = 0; col < 10; col++) {
+                        if (board[row][col].equals("□")) {
+                            isAllOpened = false;
                         }
                     }
                 }
-                if (open) {
+                if (isAllOpened) {
                     gameStatus = 1;
                 }
-            } else if (input2.equals("1")) {
-                if (landMines[row][col]) {
-                    board[row][col] = "☼";
+            } else if (userActionInput.equals("1")) {
+                if (landMines[selectedRowIndex][selectedColumnIndex]) {
+                    board[selectedRowIndex][selectedColumnIndex] = "☼";
                     gameStatus = -1;
                     continue;
                 } else {
-                    open(row, col);
+                    open(selectedRowIndex, selectedColumnIndex);
                 }
-                boolean open = true;
-                for (int i = 0; i < 8; i++) {
-                    for (int j = 0; j < 10; j++) {
-                        if (board[i][j].equals("□")) {
-                            open = false;
+                boolean isAllOpened = true;
+                for (int row = 0; row < 8; row++) {
+                    for (int col = 0; col < 10; col++) {
+                        if (board[row][col].equals("□")) {
+                            isAllOpened = false;
                         }
                     }
                 }
-                if (open) {
+                if (isAllOpened) {
                     gameStatus = 1;
                 }
             } else {
