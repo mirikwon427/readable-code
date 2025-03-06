@@ -128,7 +128,7 @@ public class MinesweeperGame {
     private static boolean isAllCellOpened() {
         return Arrays.stream(BOARD)
             .flatMap(Arrays::stream)
-            .noneMatch(cell -> cell.equals(CLOSED_CELL_SIGN));
+            .noneMatch(CLOSED_CELL_SIGN::equals);
     }
 
     private static int convertRowFrom(char CellInputRow) {
